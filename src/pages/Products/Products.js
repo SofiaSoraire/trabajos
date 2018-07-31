@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+//import{todos} from '.src/todos.json'
 // @Actions
 import productsActions from '../../actions/productsActions';
 import shopActions from '../../actions/shopActions';
+//import Implement from '../../Implement.js'
 
 class Products extends Component {
 
@@ -18,6 +19,11 @@ class Products extends Component {
 	addProduct(name, description, price) {
 		this.props.addProduct(name, description, price);
 	}
+    removeProduct() {
+        this.props.removeProduct();
+    }
+
+
 
     render() {
     	const { products, shop } = this.props;
@@ -48,19 +54,19 @@ class Products extends Component {
     	}) : <p>No hay productos en el carrito</p>;
         return (
         	<div>
-	            <h1>Productos</h1>
 	            {renderProducts}
-	            <h1>Carrito</h1>
-	            {orders}
+                <h1>Carrito</h1>
+                {orders}
+                <h3>{shop.total}</h3>
+                <button onClick={this.props.clearShop}>Borrar Carrito</button>
+                <button onClick={this.props.removeProduct}> Limpiar suma</button>
             </div>
         );
     }
+
 }
 
-/*
-connect conecta la aplicación al store. Permite agregar datos y funciones a 
-las props.
-*/
+
 
 export default connect(
     state => {
@@ -70,6 +76,9 @@ export default connect(
         }
     },{
         addProduct: shopActions.addProduct, // Uso una acción para agregar al carrito
-        getProducts: productsActions.getProducts
+        getProducts: productsActions.getProducts,
+        getProducts: productsActions.getProducts,
+        clearShop: shopActions.clearShop,
+        removeProduct: shopActions.removeProduct
     }
 )(Products);

@@ -9,4 +9,11 @@ const addProduct = (name, description, price) => ({
 	}
 });
 
-export default { addProduct };
+const clearShop = () => ({
+	type: actionTypes.SHOP_CLEAR
+});
+const removeProduct = () => ({
+	type: actionTypes.SHOP_REMOVE_PRODUCT
+
+});
+ export default {addProduct, clearShop, removeProduct}; 

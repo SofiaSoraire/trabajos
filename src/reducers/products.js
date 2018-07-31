@@ -15,7 +15,13 @@ const initialState = {
         price: 92
     }]
 };
-
+ export const commentList = (state, action) => { switch (action.type) { 
+    case 'ADD_COMMENT': let newComment = { comment: action.data, id: +new Date }; 
+ return state.concat([newComment]); 
+ case 'DELETE_COMMENT': let commentId = action.data; 
+ default: return state || []; 
+} 
+} 
 const productsReducer = (state = initialState, action) => {
 
     switch(action.type) {
@@ -30,3 +36,5 @@ const productsReducer = (state = initialState, action) => {
 };
 
 export default productsReducer;
+
+
